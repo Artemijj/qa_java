@@ -14,11 +14,11 @@ import static org.mockito.Mockito.lenient;
 public class CatTest {
 
     @Spy
-    Cat cat = new Cat(new Feline());
+    Feline feline;
 
     @Test
     public void testGetSound() {
-        Cat cat = new Cat(new Feline());
+        Cat cat = new Cat(feline);
         String expectedSound = "Мяу";
         String actualSound = cat.getSound();
         assertEquals(expectedSound, actualSound);
@@ -26,7 +26,7 @@ public class CatTest {
 
     @Test
     public void testGetFood() throws Exception {
-        Feline feline = new Feline();
+        Cat cat = new Cat(feline);
         List<String> expectedList = List.of("Животные", "Птицы", "Рыба");
         List<String> actualList = cat.getFood();
         lenient().when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
