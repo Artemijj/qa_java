@@ -3,13 +3,10 @@ import com.example.Feline;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-
 import org.mockito.junit.MockitoJUnitRunner;
-
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.lenient;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AlexTest {
@@ -18,7 +15,7 @@ public class AlexTest {
 
     @Test
     public void testGetFriends() throws Exception {
-        Alex alex = new Alex("Самец", new Feline());
+        Alex alex = new Alex("Самец", feline);
         List<String> expectedList = List.of("Марти", "Глория", "Мелман");
         List<String> actualList = alex.getFriends();
         assertEquals(expectedList, actualList);
@@ -26,7 +23,7 @@ public class AlexTest {
 
     @Test
     public void testGetPlaceOfLiving() throws Exception {
-        Alex alex = new Alex("Самец", new Feline());
+        Alex alex = new Alex("Самец", feline);
         String expectedPlace = "Нью-Йоркский зоопарк";
         String actualPlace = alex.getPlaceOfLiving();
         assertEquals(expectedPlace, actualPlace);
@@ -34,10 +31,9 @@ public class AlexTest {
 
     @Test
     public void testGetKittens() throws Exception {
-        Alex alex = new Alex("Самец", new Feline());
+        Alex alex = new Alex("Самец", feline);
         int expectedKittensCount = 0;
         int actualKittensCount = alex.getKittens();
-        lenient().when(feline.getKittens(0)).thenReturn(0);
         assertEquals(expectedKittensCount, actualKittensCount);
     }
 }
